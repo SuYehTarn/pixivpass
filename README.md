@@ -33,3 +33,7 @@ This project consists of two parts: the front end UI and the back end API. The f
 - AWS CDK 1.133.0
 - AWS Lambda Function
 - AWS API Gateway
+
+## Architecture
+
+![](doc/architecture.png)
