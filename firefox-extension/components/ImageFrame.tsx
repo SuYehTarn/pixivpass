@@ -17,7 +17,16 @@ const ImageFrame = ({ imageUrl, artworkInfo }: { [key: string]: any }) => {
                 })
               : ""}
           </Card.Text>
-          <Button variant="primary">Go somewhere</Button>
+          <Button
+            variant="primary"
+            href={
+              (artworkInfo.body.id &&
+                `https://www.pixiv.net/artworks/${artworkInfo.body.id}`) ||
+              ""
+            }
+          >
+            Pixiv
+          </Button>
         </Card.Body>
       </Card>
     </>

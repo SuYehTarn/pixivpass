@@ -2,19 +2,11 @@ import React, { useState } from "react";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
-import ImageFrame from "./ImageFrame";
-import dotenv from "dotenv";
 
-dotenv.config();
+const PIXIV_PASS_API_URL = process.env["NEXT_PUBLIC_PIXIV_PASS_API_URL"];
 
-const PIXIV_PASS_API_URL = process.env["PIXIV_PASS_API_URL"];
-
-const SearchBar = () => {
+const SearchBar = ({ setArtworkInfo, setImageUrl }: { [key: string]: any }) => {
   const [artworkId, setArtworkId] = useState("");
-  const [artworkInfo, setArtworkInfo] = useState({
-    body: {},
-  });
-  const [imageUrl, setImageUrl] = useState("");
 
   const handleInputChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setArtworkId(e.target.value);
@@ -54,14 +46,7 @@ const SearchBar = () => {
         >
           Submit
         </Button>
-        <Button variant="primary" id="clear">
-          Clear
-        </Button>
-        <Button variant="primary" id="paste">
-          Paste
-        </Button>
       </InputGroup>
-      <ImageFrame imageUrl={imageUrl || ""} artworkInfo={artworkInfo} />
     </>
   );
 };

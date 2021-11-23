@@ -1,9 +1,9 @@
 const fetch = require("node-fetch");
 
-exports.handler = async (event) => {
-  const ARTWORK_PROFILE_API = "https://www.pixiv.net/ajax/illust/";
+const ARTWORK_PROFILE_API = "https://www.pixiv.net/ajax/illust/";
 
-  const url = ARTWORK_PROFILE_API + "94098448";
+exports.handler = async (event) => {
+  const url = ARTWORK_PROFILE_API + event.pathParameters.artworkId;
 
   const resp = await fetch(url);
   const info = await resp.json();

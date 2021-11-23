@@ -1,25 +1,28 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-// import Image from "next/image";
 import "bootstrap/dist/css/bootstrap.min.css";
 import styles from "../styles/Home.module.css";
 import SearchBar from "../components/SearchBar";
 import ImageFrame from "../components/ImageFrame";
+import { useState } from "react";
 
 const Home: NextPage = () => {
+  const [artworkInfo, setArtworkInfo] = useState({
+    body: {},
+  });
+  const [imageUrl, setImageUrl] = useState("");
   return (
     <div className={styles.container}>
       <Head>
         <title>Pixiv Pass</title>
-        <meta name="description" content="A FireFox extension" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta name="description" content="Pixiv Pass FireFox extension" />
       </Head>
 
-      <SearchBar />
+      <SearchBar setArtworkInfo={setArtworkInfo} setImageUrl={setImageUrl} />
 
-      <main className={styles.main}></main>
-
-      <footer className={styles.footer}></footer>
+      {imageUrl && (
+        <ImageFrame imageUrl={imageUrl || ""} artworkInfo={artworkInfo} />
+      )}
     </div>
   );
 };

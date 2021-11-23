@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Pixiv Pass-dev",
   "description": "Preview Pixiv artwork with its ID and provide download link",
-  "version": "0.1.2",
+  "version": "0.2.1",
 
   "icons": {
     "48": "icons/PP-48.png"
@@ -13,24 +13,13 @@
     "clipboardRead",
     "storage",
     "webRequest",
-    "*://*.pixiv.net/*",
-    "*://pixiv-asker.herokuapp.com/*"
+    "*://*.pixiv.net/*"
   ],
 
   "browser_action": {
     "default_popup": "index.html",
     "default_icon": "icons/PP-32.png",
     "default_title": "Pixiv Pass"
-  },
-
-  "sidebar_action": {
-    "default_title": "Pixiv Pass",
-    "default_panel": "index.html",
-    "default_icon": "icons/PP-32.png"
-  },
-
-  "background": {
-    "scripts": ["background.js"]
   },
 
   "browser_specific_settings": {
