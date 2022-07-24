@@ -14,16 +14,22 @@ const SearchBar = ({ setArtworkInfo, setImageUrl }: { [key: string]: any }) => {
 
   const handleSubmit = async (e: React.MouseEvent) => {
     e.preventDefault();
+    
     try {
-      var response = await fetch(`${PIXIV_PASS_API_URL}/profile/${artworkId}`);
-      var info = await response.json();
+      const response = await fetch(`${PIXIV_PASS_API_URL}/profile/${artworkId}`);
+      const info = await response.json();
       setArtworkInfo(info);
-      var response = await fetch(`${PIXIV_PASS_API_URL}/image/${artworkId}`);
-      var blob = await response.blob();
+    } catch (e) {
+      console.log("Error getting artwork info");
+    }
+
+    try {      
+      const response = await fetch(`${PIXIV_PASS_API_URL}/image/${artworkId}`);
+      const blob = await response.blob();
       const imageUrl = URL.createObjectURL(blob);
       setImageUrl(imageUrl);
     } catch (e) {
-      console.log("Error");
+      console.log("Error getting image");
     }
   };
   return (

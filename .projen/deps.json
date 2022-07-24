@@ -6,24 +6,26 @@
     },
     {
       "name": "@types/node",
-      "version": "^14.17.0",
+      "version": "^14",
       "type": "build"
     },
     {
       "name": "@typescript-eslint/eslint-plugin",
+      "version": "^5",
       "type": "build"
     },
     {
       "name": "@typescript-eslint/parser",
+      "version": "^5",
       "type": "build"
     },
     {
       "name": "aws-cdk",
-      "version": "^1.95.2",
+      "version": "^2.1.0",
       "type": "build"
     },
     {
-      "name": "eslint",
+      "name": "esbuild",
       "type": "build"
     },
     {
@@ -39,12 +41,17 @@
       "type": "build"
     },
     {
+      "name": "eslint",
+      "version": "^8",
+      "type": "build"
+    },
+    {
       "name": "jest",
       "type": "build"
     },
     {
       "name": "jest-junit",
-      "version": "^12",
+      "version": "^13",
       "type": "build"
     },
     {
@@ -53,7 +60,7 @@
     },
     {
       "name": "npm-check-updates",
-      "version": "^11",
+      "version": "^15",
       "type": "build"
     },
     {
@@ -66,7 +73,6 @@
     },
     {
       "name": "ts-node",
-      "version": "^9",
       "type": "build"
     },
     {
@@ -74,38 +80,25 @@
       "type": "build"
     },
     {
-      "name": "@aws-cdk/assert",
-      "version": "^1.95.2",
+      "name": "@aws-cdk/aws-apigatewayv2-alpha",
       "type": "runtime"
     },
     {
-      "name": "@aws-cdk/aws-apigatewayv2-integrations",
-      "version": "^1.95.2",
+      "name": "@aws-cdk/aws-apigatewayv2-integrations-alpha",
       "type": "runtime"
     },
     {
-      "name": "@aws-cdk/aws-apigatewayv2",
-      "version": "^1.95.2",
+      "name": "@aws-cdk/aws-lambda-python-alpha",
       "type": "runtime"
     },
     {
-      "name": "@aws-cdk/aws-lambda-nodejs",
-      "version": "^1.95.2",
+      "name": "aws-cdk-lib",
+      "version": "^2.1.0",
       "type": "runtime"
     },
     {
-      "name": "@aws-cdk/aws-lambda-python",
-      "version": "^1.95.2",
-      "type": "runtime"
-    },
-    {
-      "name": "@aws-cdk/aws-lambda",
-      "version": "^1.95.2",
-      "type": "runtime"
-    },
-    {
-      "name": "@aws-cdk/core",
-      "version": "^1.95.2",
+      "name": "constructs",
+      "version": "^10.0.5",
       "type": "runtime"
     },
     {

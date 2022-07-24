@@ -1,18 +1,17 @@
-const { AwsCdkTypeScriptApp } = require("projen");
-const project = new AwsCdkTypeScriptApp({
-  cdkVersion: "1.95.2",
+const { awscdk } = require('projen');
+const project = new awscdk.AwsCdkTypeScriptApp({
+  cdkVersion: "2.1.0",
   defaultReleaseBranch: "main",
   name: "back-end",
   authorName: "YehTarnSu",
   authorEmail: "yehtarnsu@gmail.com",
-  cdkDependencies: [
-    "@aws-cdk/aws-lambda",
-    "@aws-cdk/aws-lambda-python",
-    "@aws-cdk/aws-lambda-nodejs",
-    "@aws-cdk/aws-apigatewayv2-integrations",
-    "@aws-cdk/aws-apigatewayv2",
+  deps: [
+    "aws-cdk-lib",
+    "@aws-cdk/aws-apigatewayv2-alpha",
+    "@aws-cdk/aws-apigatewayv2-integrations-alpha",
+    "@aws-cdk/aws-lambda-python-alpha",
+    "dotenv",
   ],
-  deps: ["dotenv"],
   gitignore: [".env"],
 });
 project.synth();

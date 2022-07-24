@@ -1,32 +1,24 @@
-import { App, Construct, Stack, StackProps, CfnOutput } from "@aws-cdk/core";
-import { LayerVersion } from "@aws-cdk/aws-lambda";
-import { NodejsFunction } from "@aws-cdk/aws-lambda-nodejs";
-import { PythonFunction } from "@aws-cdk/aws-lambda-python";
-import { LambdaProxyIntegration } from "@aws-cdk/aws-apigatewayv2-integrations";
-import { HttpApi, HttpMethod, CorsHttpMethod } from "@aws-cdk/aws-apigatewayv2";
+import { App, Stack, StackProps, CfnOutput } from 'aws-cdk-lib';
+import { Construct } from 'constructs';
+import { HttpLambdaIntegration } from "@aws-cdk/aws-apigatewayv2-integrations-alpha";
+import { HttpApi, HttpMethod, CorsHttpMethod } from "@aws-cdk/aws-apigatewayv2-alpha";
 import dotenv from "dotenv";
+
+import {
+  GetImageLambda,
+  GetProfileLambda,
+  // Operator,
+} from "./components/lambda";
 
 dotenv.config();
 
 export class PixivPassStack extends Stack {
   constructor(scope: Construct, id: string, props: StackProps = {}) {
     super(scope, id, props);
-    const getProfile = new NodejsFunction(this, "get-profile", {
-      entry: `${__dirname}/../lambda/getprofile/index.js`,
-      bundling: {
-        nodeModules: ["node-fetch"],
-      },
-    });
-    const getImage = new PythonFunction(this, "get-image", {
-      entry: `${__dirname}/../lambda/getimage`,
-      layers: [
-        LayerVersion.fromLayerVersionArn(
-          this,
-          "pixiv-pass-layer",
-          process.env["PYTHON_LAYER_ARN"]!
-        ),
-      ],
-    });
+
+    const getProfile = new GetProfileLambda(this);
+    const getImage = new GetImageLambda(this);
+    // new Operator(this);
 
     const httpApi = new HttpApi(this, "pixiv-pass-http-api", {
       corsPreflight: {
@@ -38,16 +30,12 @@ export class PixivPassStack extends Stack {
     httpApi.addRoutes({
       path: "/profile/{artworkId}",
       methods: [HttpMethod.GET],
-      integration: new LambdaProxyIntegration({
-        handler: getProfile,
-      }),
+      integration: new HttpLambdaIntegration("getProfileIntegration", getProfile),
     });
     httpApi.addRoutes({
       path: "/image/{artworkId}",
       methods: [HttpMethod.GET],
-      integration: new LambdaProxyIntegration({
-        handler: getImage,
-      }),
+      integration: new HttpLambdaIntegration("getImageIntegration", getImage),
     });
 
     new CfnOutput(this, "http-api-url", {
